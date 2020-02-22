@@ -89,7 +89,7 @@ export const generateVerticalStackedBars = ({
         getHeight = (d, y) => yScale(d[1]) - y
     }
 
-    if ((!hideZeroValues && barHeight >= 0) || barWidth > 0) {
+    if ((!hideZeroValues && barWidth >= 0) || barWidth > 0) {
         stackedData.forEach(stackedDataItem => {
             xScale.domain().forEach((index, i) => {
                 const d = stackedDataItem[i]
@@ -177,7 +177,7 @@ export const generateHorizontalStackedBars = ({
         getWidth = (d, y) => xScale(d[0]) - y
     }
 
-    if ((!hideZeroValues && barWidth >= 0) || barHeight > 0) {
+    if ((!hideZeroValues && barHeight >= 0) || barHeight > 0) {
         stackedData.forEach(stackedDataItem => {
             yScale.domain().forEach((index, i) => {
                 const d = stackedDataItem[i]
@@ -196,6 +196,18 @@ export const generateHorizontalStackedBars = ({
                 if (innerPadding > 0) {
                     x += innerPadding * 0.5
                     barWidth -= innerPadding
+                }
+
+                if (barWidth === 0) {
+                    bars.push({
+                        key: `${stackedDataItem.key}.${index}`,
+                        data: barData,
+                        x,
+                        y,
+                        width: 1,
+                        height: barHeight,
+                        color: getColor(barData),
+                    })
                 }
 
                 if (barWidth > 0) {

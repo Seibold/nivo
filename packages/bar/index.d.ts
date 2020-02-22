@@ -18,7 +18,7 @@ import {
 import { OrdinalColorsInstruction, InheritedColorProp } from '@nivo/colors'
 import { LegendProps } from '@nivo/legends'
 
-declare module '@nivo/bar' {
+declare module '@dadodo/bar' {
     export interface Data {
         data: object[]
     }
@@ -89,6 +89,7 @@ declare module '@nivo/bar' {
         reverse: boolean
 
         innerPadding: number
+        hideZeroValues: boolean
         minValue: number | 'auto'
         margin: Box
         maxValue: number | 'auto'
